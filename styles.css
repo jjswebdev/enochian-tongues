@@ -235,12 +235,20 @@ h1 {
   text-align: center;
 }
 
-.news-heading h2 {
+.news-ornament {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 16px;
+  width: min(100%, 560px);
+  margin: 0 auto 16px;
+}
+
+.news-divider {
+  flex: 1 1 0;
+  min-width: 0;
+  height: 12px;
+  object-fit: cover;
 }
 
 .news-icon {
