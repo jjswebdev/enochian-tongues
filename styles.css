@@ -92,6 +92,19 @@ nav {
   text-decoration: none;
 }
 
+.social-links .social-icon {
+  justify-content: center;
+  min-width: 44px;
+}
+
+.social-icon svg {
+  display: block;
+}
+
+.social-icon:hover {
+  color: #1da0c3;
+}
+
 .social-links a[aria-disabled="true"] {
   cursor: default;
 }
