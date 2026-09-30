@@ -103,7 +103,7 @@ nav a:hover {
   text-align: center;
   background:
     linear-gradient(rgb(0 0 0 / 35%), rgb(0 0 0 / 85%)),
-    url("Assets/paradise-lost.jpg") center 35% / cover no-repeat;
+    url("assets/paradise-lost.jpg") center 35% / cover no-repeat;
 }
 
 .hero-content {
