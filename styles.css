@@ -231,6 +231,23 @@ h1 {
   border-bottom: 1px solid var(--border);
 }
 
+.news-heading {
+  text-align: center;
+}
+
+.news-heading h2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+}
+
+.news-icon {
+  width: clamp(40px, 5vw, 60px);
+  height: auto;
+  flex-shrink: 0;
+}
+
 .eyebrow {
   margin: 0 0 12px;
   color: var(--muted);
