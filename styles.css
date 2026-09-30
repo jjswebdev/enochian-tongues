@@ -79,20 +79,75 @@ footer {
 }
 
 nav {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 24px;
+  flex-shrink: 0;
 }
 
-nav a {
+.menu {
+  position: relative;
+}
+
+.menu summary {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 44px;
+  padding: 8px 14px;
+  border: 1px solid var(--border);
+  cursor: pointer;
+  list-style: none;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.menu summary::-webkit-details-marker {
+  display: none;
+}
+
+.menu-arrow {
+  transition: transform 180ms ease;
+}
+
+.menu[open] .menu-arrow {
+  transform: rotate(180deg);
+}
+
+.menu-links {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  z-index: 20;
+  width: 190px;
+  max-width: calc(100vw - 40px);
+  margin: 0;
+  padding: 8px 0;
+  list-style: none;
+  border: 1px solid var(--border);
+  background: var(--background);
+  box-shadow: 0 12px 32px rgb(0 0 0 / 50%);
+}
+
+.menu:not([open]) .menu-links {
+  display: none;
+}
+
+.menu-links a {
+  display: block;
+  padding: 12px 20px;
   font-size: 12px;
   letter-spacing: 2px;
   text-transform: uppercase;
   text-decoration: none;
 }
 
-nav a:hover {
-  color: var(--muted);
+.menu summary:hover,
+.menu-links a:hover,
+.menu-links a:focus-visible {
+  background: #201f1d;
+}
+
+.menu-links a:focus-visible {
+  outline-offset: -4px;
 }
 
 .hero {
@@ -205,14 +260,8 @@ footer {
 
 @media (max-width: 640px) {
   .header {
-    flex-direction: column;
-    gap: 14px;
+    gap: 12px;
     padding: 16px 20px;
-  }
-
-  nav {
-    justify-content: center;
-    gap: 18px;
   }
 
   .hero {
@@ -238,7 +287,8 @@ footer {
     scroll-behavior: auto;
   }
 
-  .button {
+  .button,
+  .menu-arrow {
     transition: none;
   }
 }

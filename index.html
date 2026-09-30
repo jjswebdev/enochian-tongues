@@ -13,10 +13,16 @@
   <header class="header">
     <a class="band-name" href="#home">Enochian Tongues</a>
     <nav aria-label="Main navigation">
-      <a href="#music">Music</a>
-      <a href="#shows">Shows</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
+      <details class="menu">
+        <summary>Menu <span class="menu-arrow" aria-hidden="true">▾</span></summary>
+        <ul class="menu-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#music">Music</a></li>
+          <li><a href="#shows">Shows</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </details>
     </nav>
   </header>
 
@@ -70,5 +76,31 @@
     <p>Enochian Tongues</p>
     <a href="#home">Back to top ↑</a>
   </footer>
+  <script>
+    const menu = document.querySelector('.menu');
+    const menuToggle = menu.querySelector('summary');
+
+    menu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        menu.open = false;
+        menuToggle.focus({ preventScroll: true });
+      });
+    });
+
+    document.addEventListener('click', event => {
+      if (!menu.contains(event.target)) menu.open = false;
+    });
+
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && menu.open) {
+        menu.open = false;
+        menuToggle.focus();
+      }
+    });
+
+    menu.addEventListener('focusout', event => {
+      if (!menu.contains(event.relatedTarget)) menu.open = false;
+    });
+  </script>
 </body>
 </html>
