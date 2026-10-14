@@ -466,3 +466,50 @@ footer {
     transition: none;
   }
 }
+
+.musicians {
+  margin-top: 48px;
+  text-align: center;
+}
+
+.musician-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  width: min(100%, 560px);
+  margin: 24px auto 0;
+}
+
+.musician {
+  margin: 0;
+}
+
+.musician-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  aspect-ratio: 3 / 4;
+  border: 1px solid rgb(196 184 117 / 35%);
+  background: #11110f;
+  color: var(--accent);
+}
+
+.musician-placeholder span {
+  padding-inline: 12px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.musician figcaption {
+  margin-top: 16px;
+}
+
+@media (max-width: 480px) {
+  .musician-grid {
+    grid-template-columns: 1fr;
+    max-width: 260px;
+    gap: 32px;
+  }
+}
