@@ -222,6 +222,23 @@ nav {
     url("assets/paradise-lost.jpg") center 35% / cover no-repeat;
 }
 
+.hero.hero-compact {
+  min-height: 0;
+  padding: clamp(24px, 5vw, 48px) 24px;
+}
+
+.hero-compact .hero-content {
+  width: min(100%, 420px);
+}
+
+.hero-compact h1 {
+  margin: 0;
+}
+
+.hero-compact .logo {
+  max-height: clamp(100px, 20svh, 180px);
+}
+
 .hero-content {
   width: min(100%, 700px);
 }
