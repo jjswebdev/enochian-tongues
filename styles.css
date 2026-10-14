@@ -237,6 +237,7 @@ nav {
 
 .hero-compact .logo {
   max-height: clamp(100px, 20svh, 180px);
+  transform: scale(1.1);
 }
 
 .hero-content {
