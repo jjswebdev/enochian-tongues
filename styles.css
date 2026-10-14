@@ -320,6 +320,10 @@ footer {
 }
 
 @media (max-width: 640px) {
+  .social-links {
+    gap: 4px;
+  }
+
   .header {
     gap: 12px;
     padding: 16px 20px;
