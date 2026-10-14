@@ -419,3 +419,50 @@ footer {
     transition: none;
   }
 }
+/* Contact page links */
+.contact-booking {
+  margin-bottom: var(--space-large);
+}
+
+.contact-email {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  overflow-wrap: anywhere;
+}
+
+.contact-platforms {
+  display: grid;
+  gap: 12px;
+  width: min(100%, 360px);
+  margin-inline: auto;
+}
+
+.contact-platform {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-height: 52px;
+  padding: 12px 20px;
+  border: 1px solid rgb(196 184 117 / 35%);
+  background: #11110f;
+  text-decoration: none;
+  transition: background 180ms ease, border-color 180ms ease;
+}
+
+.contact-platform svg {
+  flex-shrink: 0;
+}
+
+.contact-platform:hover,
+.contact-platform:focus-visible {
+  background: rgb(196 184 117 / 12%);
+  border-color: var(--accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact-platform {
+    transition: none;
+  }
+}
