@@ -381,12 +381,12 @@ footer {
 
 @media (max-width: 640px) {
   .social-links {
-    gap: 4px;
+    gap: 0;
   }
 
   .header {
-    gap: 12px;
-    padding: 16px 20px;
+    gap: 8px;
+    padding: 12px;
   }
 
   .hero {
