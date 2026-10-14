@@ -229,7 +229,7 @@ nav {
 }
 
 .hero-compact .hero-content {
-  width: min(100%, 560px);
+  width: min(100%, 672px);
 }
 
 .hero-compact h1 > a {
@@ -241,7 +241,7 @@ nav {
 }
 
 .hero-compact .logo {
-  max-height: clamp(132px, 26.4svh, 238px);
+  max-height: clamp(158px, 31.68svh, 286px);
   transform: none;
 }
 
