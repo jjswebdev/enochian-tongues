@@ -3,6 +3,7 @@
   --background: #080808;
   --text: #e8e5df;
   --muted: #a8a49d;
+  --accent: #c4b875;
   --border: #34322f;
   --width: 1100px;
 }
@@ -27,6 +28,17 @@ body {
 a {
   color: inherit;
   text-underline-offset: 5px;
+}
+
+a[href]:hover,
+a[href]:focus-visible,
+.menu summary:hover,
+.menu summary:focus-visible {
+  color: var(--accent);
+}
+
+.section a[href] {
+  color: var(--accent);
 }
 
 img {
@@ -101,8 +113,8 @@ nav {
   display: block;
 }
 
-.social-icon:hover {
-  color: #1da0c3;
+.social-icon[href]:hover {
+  color: var(--accent);
 }
 
 .social-links a[aria-disabled="true"] {
@@ -186,6 +198,12 @@ nav {
   outline-offset: -4px;
 }
 
+.menu-links a[aria-current="page"] {
+  color: var(--accent);
+  background: rgb(196 184 117 / 10%);
+  box-shadow: inset 3px 0 var(--accent);
+}
+
 .hero {
   display: grid;
   place-items: center;
@@ -224,8 +242,10 @@ h1 {
   transition: background 180ms ease, color 180ms ease;
 }
 
-.button:hover {
-  background: var(--text);
+.button:hover,
+.button:focus-visible {
+  background: var(--accent);
+  border-color: var(--accent);
   color: var(--background);
 }
 
@@ -315,7 +335,7 @@ footer {
 }
 
 :focus-visible {
-  outline: 2px solid var(--text);
+  outline: 2px solid var(--accent);
   outline-offset: 6px;
 }
 
