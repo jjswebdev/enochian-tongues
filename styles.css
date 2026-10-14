@@ -109,6 +109,11 @@ nav {
   cursor: default;
 }
 
+.social-links a[aria-label="Apple Music"][aria-disabled="true"] {
+  opacity: 0.4;
+  color: var(--muted);
+}
+
 .social-links a[href]:hover {
   text-decoration: underline;
 }
