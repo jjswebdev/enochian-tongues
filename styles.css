@@ -223,12 +223,17 @@ nav {
 }
 
 .hero.hero-compact {
+  height: clamp(180px, calc(20svh + 96px), 276px);
   min-height: 0;
   padding: clamp(24px, 5vw, 48px) 24px;
 }
 
 .hero-compact .hero-content {
-  width: min(100%, 420px);
+  width: min(100%, 560px);
+}
+
+.hero-compact h1 > a {
+  display: block;
 }
 
 .hero-compact h1 {
@@ -236,8 +241,8 @@ nav {
 }
 
 .hero-compact .logo {
-  max-height: clamp(100px, 20svh, 180px);
-  transform: scale(1.32);
+  max-height: clamp(132px, 26.4svh, 238px);
+  transform: none;
 }
 
 .hero-content {
