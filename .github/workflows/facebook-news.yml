@@ -1,6 +1,14 @@
 name: Sync Facebook news
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '*.html'
+      - 'styles.css'
+      - 'assets/**'
+      - 'scripts/**'
+      - '.github/workflows/facebook-news.yml'
   schedule:
     - cron: '23 */6 * * *'
 permissions:
