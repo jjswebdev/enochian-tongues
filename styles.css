@@ -488,3 +488,15 @@ footer {
 .news-card .button { margin-top: 8px; }
 .news-fallback { grid-column: 1 / -1; text-align: center; }
 @media (max-width: 640px) { .news-grid { grid-template-columns: 1fr; } .news-card-content { padding: 20px; } }
+
+.news-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin: 0;
+  padding: 16px;
+  border-bottom: 1px solid rgb(196 184 117 / 25%);
+  text-align: center;
+}
+.news-stats dt { color: var(--muted); font-size: 12px; }
+.news-stats dd { margin: 4px 0 0; color: var(--accent); font-size: 20px; line-height: 1.3; }
