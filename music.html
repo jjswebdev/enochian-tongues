@@ -5,12 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Enochian Tongues — music.">
   <title>Music — Enochian Tongues</title>
-  <link rel="stylesheet" href="styles.css?v=20261014-logo3">
+  <link rel="stylesheet" href="styles.css?v=20261015-nav">
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="header">
+    <nav class="page-navigation" aria-label="Main navigation">
+      <ul class="page-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="music.html" aria-current="page">Music</a></li>
+          <li><a href="shows.html">Shows</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
     <nav class="social-links" aria-label="Social links">
       <a class="social-icon" href="https://enochiantongues.bandcamp.com/" aria-label="Bandcamp" title="Bandcamp">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
@@ -49,18 +58,6 @@
         </svg>
       </a>
     </nav>
-    <nav aria-label="Main navigation">
-      <details class="menu">
-        <summary>Menu <span class="menu-arrow" aria-hidden="true">▾</span></summary>
-        <ul class="menu-links">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="music.html" aria-current="page">Music</a></li>
-          <li><a href="shows.html">Shows</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </details>
-    </nav>
   </header>
 
   <main id="main">
@@ -96,31 +93,5 @@
     <p>© 2026 Enochian Tongues</p>
     <a href="#home">Back to top ↑</a>
   </footer>
-  <script>
-    const menu = document.querySelector('.menu');
-    const menuToggle = menu.querySelector('summary');
-
-    menu.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        menu.open = false;
-        menuToggle.focus({ preventScroll: true });
-      });
-    });
-
-    document.addEventListener('click', event => {
-      if (!menu.contains(event.target)) menu.open = false;
-    });
-
-    document.addEventListener('keydown', event => {
-      if (event.key === 'Escape' && menu.open) {
-        menu.open = false;
-        menuToggle.focus();
-      }
-    });
-
-    menu.addEventListener('focusout', event => {
-      if (!menu.contains(event.relatedTarget)) menu.open = false;
-    });
-  </script>
 </body>
 </html>
