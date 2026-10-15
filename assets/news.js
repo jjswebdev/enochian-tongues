@@ -18,6 +18,22 @@
       if (!url) continue;
       const card = document.createElement('article');
       card.className = 'news-card';
+      const stats = document.createElement('dl');
+      stats.className = 'news-stats';
+      stats.setAttribute('aria-label', 'Facebook post engagement');
+      for (const [label, key] of [['Comments', 'comments'], ['Views', 'views'], ['Likes', 'likes']]) {
+        const metric = document.createElement('div');
+        const term = document.createElement('dt'); term.textContent = label;
+        const value = document.createElement('dd');
+        const available = Number.isSafeInteger(post[key]) && post[key] >= 0;
+        value.textContent = available ? new Intl.NumberFormat('en-US').format(post[key]) : '—';
+        if (!available) {
+          value.title = 'Not available from Facebook';
+          value.setAttribute('aria-label', 'Not available from Facebook');
+        }
+        metric.append(term, value); stats.append(metric);
+      }
+      card.append(stats);
       const imageUrl = safeUrl(post.image);
       if (imageUrl) {
         const image = document.createElement('img');
