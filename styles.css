@@ -38,9 +38,7 @@ a {
 }
 
 a[href]:hover,
-a[href]:focus-visible,
-.menu summary:hover,
-.menu summary:focus-visible {
+a[href]:focus-visible {
   color: var(--accent);
 }
 
@@ -72,8 +70,8 @@ img {
   position: sticky;
   top: 0;
   z-index: 10;
-  display: flex;
-  justify-content: flex-end;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
   align-items: center;
   gap: 24px;
   padding: 20px max(24px, calc((100% - var(--width)) / 2));
@@ -96,9 +94,10 @@ nav {
   flex-shrink: 1;
   display: flex;
   flex-wrap: wrap;
-  gap: 8px 20px;
+  gap: 4px;
   min-width: 0;
-  margin-right: auto;
+  margin-left: auto;
+  justify-content: flex-end;
 }
 
 .social-links a {
@@ -137,78 +136,44 @@ nav {
   text-decoration: underline;
 }
 
-.menu {
-  position: relative;
+.page-navigation {
+  min-width: 0;
 }
 
-.menu summary {
+.page-links {
   display: flex;
-  align-items: center;
-  gap: 12px;
-  min-height: 44px;
-  padding: 8px 14px;
-  border: 1px solid var(--border);
-  cursor: pointer;
-  list-style: none;
-  font-size: 12px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-}
-
-.menu summary::-webkit-details-marker {
-  display: none;
-}
-
-.menu-arrow {
-  transition: transform 180ms ease;
-}
-
-.menu[open] .menu-arrow {
-  transform: rotate(180deg);
-}
-
-.menu-links {
-  position: absolute;
-  top: calc(100% + 8px);
-  right: 0;
-  z-index: 20;
-  width: 190px;
-  max-width: calc(100vw - 40px);
+  flex-wrap: wrap;
+  gap: 4px 12px;
   margin: 0;
-  padding: 8px 0;
+  padding: 0;
   list-style: none;
-  border: 1px solid var(--border);
-  background: var(--background);
-  box-shadow: 0 12px 32px rgb(0 0 0 / 50%);
 }
 
-.menu:not([open]) .menu-links {
-  display: none;
-}
-
-.menu-links a {
-  display: block;
-  padding: 12px 20px;
+.page-links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 6px 4px;
   font-size: 12px;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
   text-transform: uppercase;
   text-decoration: none;
 }
 
-.menu summary:hover,
-.menu-links a:hover,
-.menu-links a:focus-visible {
-  background: #201f1d;
-}
-
-.menu-links a:focus-visible {
-  outline-offset: -4px;
-}
-
-.menu-links a[aria-current="page"] {
+.page-links a[aria-current="page"] {
   color: var(--accent);
-  background: rgb(196 184 117 / 10%);
-  box-shadow: inset 3px 0 var(--accent);
+  box-shadow: inset 0 -2px var(--accent);
+}
+
+@media (max-width: 900px) {
+  .header {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 8px;
+  }
+
+  .social-links {
+    width: 100%;
+  }
 }
 
 .hero {
@@ -414,8 +379,7 @@ footer {
     scroll-behavior: auto;
   }
 
-  .button,
-  .menu-arrow {
+  .button {
     transition: none;
   }
 }
