@@ -32,18 +32,22 @@ try {
     post.comments = null;
     post.likes = null;
     post.views = null;
-    try {
-      if (!/^[0-9_]+$/.test(post.id)) return;
-      const metricsUrl = new URL(`https://graph.facebook.com/${version}/${post.id}`);
-      metricsUrl.searchParams.set('fields', 'likes.limit(0).summary(true),comments.limit(0).summary(true).filter(stream)');
-      const result = await fetch(metricsUrl, {
-        headers: { Authorization: `Bearer ${token}` }, signal: AbortSignal.timeout(15000)
-      });
-      const metrics = await result.json();
-      if (!result.ok || metrics.error) return;
-      post.likes = count(metrics.likes?.summary?.total_count);
-      post.comments = count(metrics.comments?.summary?.total_count);
-    } catch { /* Keep the post and mark unavailable metrics honestly. */ }
+    if (!/^[0-9_]+$/.test(post.id)) return;
+    await Promise.all([['likes', 'likes.limit(0).summary(true)'], ['comments', 'comments.limit(0).summary(true).filter(stream)']].map(async ([key, field]) => {
+      try {
+        const metricsUrl = new URL(`https://graph.facebook.com/${version}/${post.id}`);
+        metricsUrl.searchParams.set('fields', field);
+        const result = await fetch(metricsUrl, {
+          headers: { Authorization: `Bearer ${token}` }, signal: AbortSignal.timeout(15000)
+        });
+        const metrics = await result.json();
+        if (!result.ok || metrics.error) {
+          console.log(`Facebook ${key} count unavailable (HTTP ${result.status}, API code ${metrics.error?.code || 'unknown'}).`);
+          return;
+        }
+        post[key] = count(metrics[key]?.summary?.total_count);
+      } catch { console.log(`Facebook ${key} count unavailable; post preserved.`); }
+    }));
   }));
   await mkdir('data', { recursive: true });
   await writeFile('data/facebook-posts.json', JSON.stringify({ posts }, null, 2) + '\n');
