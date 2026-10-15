@@ -2,6 +2,8 @@ import { writeFile, mkdir } from 'node:fs/promises';
 const token = process.env.FACEBOOK_PAGE_ACCESS_TOKEN;
 const page = process.env.FACEBOOK_PAGE_ID;
 const version = process.env.FACEBOOK_GRAPH_VERSION || 'v23.0';
+// These posts remain on Facebook but are excluded from the website on every sync.
+const excludedPostIds = new Set(["844747345393745_122097205365125982","844747345393745_639656042565400"]);
 if (!token || !/^\d+$/.test(page || '') || !/^v\d+\.0$/.test(version)) {
   throw new Error('Configure FACEBOOK_PAGE_ACCESS_TOKEN, FACEBOOK_PAGE_ID and a valid FACEBOOK_GRAPH_VERSION in GitHub Actions settings.');
 }
@@ -23,7 +25,7 @@ try {
       return u.href;
     } catch { return null; }
   };
-  const posts = body.data.filter(p => p.is_published === true && p.is_hidden !== true)
+  const posts = body.data.filter(p => p.is_published === true && p.is_hidden !== true && !excludedPostIds.has(p.id))
     .map(p => ({ id: p.id, message: typeof p.message === 'string' ? p.message : '',
       date: p.created_time, url: safeUrl(p.permalink_url, true), image: safeUrl(p.full_picture) }))
     .filter(p => p.url && Number.isFinite(Date.parse(p.date)) && (p.message || p.image)).slice(0, 6);
