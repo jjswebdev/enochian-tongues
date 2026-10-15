@@ -11,8 +11,8 @@ The homepage renders up to six cached published Page posts as dark-and-gold news
 5. In Settings → Pages, select GitHub Actions as the publishing source. The sync workflow explicitly deploys the generated static site because commits made with GitHub's workflow token do not trigger a separate Pages build.
 6. Open Actions → Sync Facebook news → Run workflow. Confirm both the sync and deployment jobs succeed, then inspect Latest News on the live home page.
 
-The workflow runs approximately every six hours on the default branch, and can be run manually. GitHub may delay schedules or disable them after prolonged repository inactivity. Renew revoked or expired Page credentials in Secrets. It reads posts; it never publishes to Facebook.
+The workflow runs approximately every six hours on the default branch, on site-file pushes to main, and can be run manually. GitHub may delay schedules or disable them after prolonged repository inactivity. Renew revoked or expired Page credentials in Secrets. It reads posts; it never publishes to Facebook.
 
 ## Current status
 
-Custom cards and API integration code are installed. No live API request has been verified: Meta credentials must be configured first. The cache starts empty; the homepage displays a Facebook link until posts are fetched. Public Page-authored posts only are requested through `/published_posts`; unpublished and hidden entries are excluded. Only selected display fields are saved to the public cache. Comments, messages, access tokens and API response metadata are not published.
+Activated October 15, 2026: Meta credentials are saved in GitHub Actions Secrets, Page ID 844747345393745 is confirmed, and the initial import and Pages deployment succeeded with two posts. Site-file pushes to main also trigger the sync and deployment workflow. Public Page-authored posts only are requested through `/published_posts`; unpublished and hidden entries are excluded. Only selected display fields are saved to the public cache. Comments, messages, access tokens and API response metadata are not published.
