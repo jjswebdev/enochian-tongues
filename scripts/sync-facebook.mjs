@@ -15,17 +15,18 @@ try {
     headers: { Authorization: `Bearer ${token}` }, signal: AbortSignal.timeout(30000)
   });
   const body = await response.json();
-  if (!response.ok || body.error || !Array.isArray(body.data)) {
-    throw new Error(`Facebook sync failed (HTTP ${response.status}, API code ${body.error?.code || 'unknown'}). Check Page token permissions and expiry.`);
+  if (!response.ok || body?.error || !Array.isArray(body?.data)) {
+    throw new Error(`Facebook sync failed (HTTP ${response.status}, API code ${body?.error?.code || 'unknown'}). Check Page token permissions and expiry.`);
   }
   const safeUrl = (value, facebookOnly = false) => {
+    if (typeof value !== 'string') return null;
     try {
       const u = new URL(value);
       if (u.protocol !== 'https:' || (facebookOnly && u.hostname !== 'facebook.com' && !u.hostname.endsWith('.facebook.com'))) return null;
       return u.href;
     } catch { return null; }
   };
-  const posts = body.data.filter(p => p.is_published === true && p.is_hidden !== true && !excludedPostIds.has(p.id))
+  const posts = body.data.filter(p => p && p.is_published === true && p.is_hidden !== true && !excludedPostIds.has(p.id))
     .map(p => ({ id: p.id, message: typeof p.message === 'string' ? p.message : '',
       date: p.created_time, url: safeUrl(p.permalink_url, true), image: safeUrl(p.full_picture) }))
     .filter(p => p.url && Number.isFinite(Date.parse(p.date)) && (p.message || p.image)).slice(0, 6);
@@ -34,6 +35,7 @@ try {
   console.log(`Synced ${posts.length} published Facebook posts.`);
 } catch (error) {
   // Do not log API responses, request URLs or tokens. Preserve the last successful cache.
-  console.error(error.message.startsWith('Facebook sync failed') ? error.message : 'Facebook sync failed. Check credentials, API version and network access. Existing posts were preserved.');
+  const message = error instanceof Error ? error.message : '';
+  console.error(message.startsWith('Facebook sync failed') ? message : 'Facebook sync failed. Check credentials, API version and network access. Existing posts were preserved.');
   process.exitCode = 1;
 }

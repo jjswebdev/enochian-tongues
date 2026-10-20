@@ -101,3 +101,9 @@ If fetching fails, check the job's error, token validity, Page authorization, pe
 ## Contact
 
 Booking and inquiries: [enochiantongues1@gmail.com](mailto:enochiantongues1@gmail.com)
+
+## Naming and formatting
+
+Use lowercase kebab-case for new pages, scripts and image filenames. Keep conventional documentation names such as `README.md` uppercase. Shared styles belong in `styles.css`; use reusable classes instead of inline styles. `.editorconfig` sets UTF-8, two-space indentation and LF line endings.
+
+Original image copies are retained as `assets/logo-source-black.png`, `assets/logo-source-gray.png` and `assets/paradise-lost-source.jpg`. The pages use `assets/logo.png` and `assets/paradise-lost.jpg`.

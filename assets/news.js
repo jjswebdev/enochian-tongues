@@ -2,6 +2,7 @@
   const container = document.querySelector('#facebook-news');
   if (!container) return;
   const safeUrl = (value, facebookOnly = false) => {
+    if (typeof value !== 'string') return null;
     try {
       const u = new URL(value);
       return u.protocol === 'https:' && (!facebookOnly || u.hostname === 'facebook.com' || u.hostname.endsWith('.facebook.com')) ? u.href : null;
@@ -10,10 +11,12 @@
   try {
     const response = await fetch('data/facebook-posts.json', { cache: 'no-cache' });
     if (!response.ok) return;
-    const { posts } = await response.json();
+    const data = await response.json();
+    const posts = data?.posts;
     if (!Array.isArray(posts) || !posts.length) return;
     const fragment = document.createDocumentFragment();
     for (const post of posts.slice(0, 6)) {
+      if (!post || typeof post !== 'object') continue;
       const url = safeUrl(post.url, true);
       if (!url) continue;
       const card = document.createElement('article');

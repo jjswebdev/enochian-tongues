@@ -252,8 +252,8 @@ p:last-child {
   transition: background 180ms ease, color 180ms ease;
 }
 
-.button:hover,
-.button:focus-visible {
+.button[href]:hover,
+.button[href]:focus-visible {
   background: var(--accent);
   border-color: var(--accent);
   color: var(--background);
@@ -333,6 +333,11 @@ h3 {
   max-width: 65ch;
 }
 
+.prose-centered {
+  margin-inline: auto;
+  text-align: center;
+}
+
 footer {
   display: flex;
   justify-content: space-between;
@@ -384,6 +389,15 @@ footer {
   }
 }
 /* Contact page links */
+.contact-section {
+  text-align: center;
+}
+
+.contact-platform[aria-disabled="true"] {
+  opacity: 0.45;
+  cursor: default;
+}
+
 .contact-booking {
   margin-bottom: var(--space-large);
 }
@@ -419,8 +433,8 @@ footer {
   flex-shrink: 0;
 }
 
-.contact-platform:hover,
-.contact-platform:focus-visible {
+.contact-platform[href]:hover,
+.contact-platform[href]:focus-visible {
   background: rgb(196 184 117 / 12%);
   border-color: var(--accent);
 }
@@ -460,6 +474,20 @@ footer {
   color: var(--accent);
 }
 
+.musician-portrait {
+  position: relative;
+  overflow: hidden;
+}
+
+.musician-portrait img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
 .musician-placeholder span {
   padding-inline: 12px;
   font-size: 12px;
@@ -478,13 +506,62 @@ footer {
   }
 }
 
-.news-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
-.news-card { overflow: hidden; background: #11110f; border: 1px solid rgb(196 184 117 / 30%); }
-.news-card > img { width: 100%; max-height: 360px; object-fit: contain; background: #080808; }
-.news-card-content { padding: 24px; }
-.news-card time { display: block; color: var(--muted); font-size: 13px; margin-bottom: 16px; }
-.news-card h3 { color: var(--text); overflow-wrap: anywhere; }
-.news-card p { white-space: pre-line; overflow-wrap: anywhere; }
-.news-card .button { margin-top: 8px; }
-.news-fallback { grid-column: 1 / -1; text-align: center; }
-@media (max-width: 640px) { .news-grid { grid-template-columns: 1fr; } .news-card-content { padding: 20px; } }
+/* Facebook news cards */
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.news-card {
+  overflow: hidden;
+  background: #11110f;
+  border: 1px solid rgb(196 184 117 / 30%);
+}
+
+.news-card > img {
+  width: 100%;
+  max-height: 360px;
+  object-fit: contain;
+  background: var(--background);
+}
+
+.news-card-content {
+  padding: 24px;
+}
+
+.news-card time {
+  display: block;
+  color: var(--muted);
+  font-size: 13px;
+  margin-bottom: 16px;
+}
+
+.news-card h3 {
+  color: var(--text);
+  overflow-wrap: anywhere;
+}
+
+.news-card p {
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+}
+
+.news-card .button {
+  margin-top: 8px;
+}
+
+.news-fallback {
+  grid-column: 1 / -1;
+  text-align: center;
+}
+
+@media (max-width: 640px) {
+  .news-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .news-card-content {
+    padding: 20px;
+  }
+}
