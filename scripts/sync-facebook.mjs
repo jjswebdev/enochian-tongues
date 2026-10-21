@@ -3,7 +3,7 @@ const token = process.env.FACEBOOK_PAGE_ACCESS_TOKEN;
 const page = process.env.FACEBOOK_PAGE_ID;
 const version = process.env.FACEBOOK_GRAPH_VERSION || 'v23.0';
 // These posts remain on Facebook but are excluded from the website on every sync.
-const excludedPostIds = new Set(["844747345393745_122097205365125982","844747345393745_639656042565400"]);
+const excludedPostIds = new Set(["844747345393745_122097205365125982","844747345393745_639656042565400","844747345393745_2920394524979072"]);
 if (!token || !/^\d+$/.test(page || '') || !/^v\d+\.0$/.test(version)) {
   throw new Error('Configure FACEBOOK_PAGE_ACCESS_TOKEN, FACEBOOK_PAGE_ID and a valid FACEBOOK_GRAPH_VERSION in GitHub Actions settings.');
 }
