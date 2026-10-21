@@ -514,8 +514,11 @@ footer {
 /* Facebook news cards */
 .news-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: minmax(0, 1fr);
   gap: 24px;
+  width: min(100%, 560px);
+  margin-inline: auto;
+  text-align: center;
 }
 
 .news-card {
