@@ -184,11 +184,12 @@ nav {
   text-align: center;
   background:
     linear-gradient(rgb(0 0 0 / 35%), rgb(0 0 0 / 85%)),
-    var(--hero-image, url("assets/album-cover.png")) center 35% / cover no-repeat;
+    var(--hero-image, url("assets/album-cover.png")) center bottom / cover no-repeat;
 }
 
 .hero-home {
   --hero-image: url("assets/album-cover.png");
+  background-position: center, center;
 }
 
 .hero.hero-compact {
