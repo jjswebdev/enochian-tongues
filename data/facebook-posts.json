@@ -1,3 +1,18 @@
 {
-  "posts": []
+  "posts": [
+    {
+      "id": "844747345393745_122154449703125982",
+      "message": "New album art is done! There is still a lot to do. Watch this space and I'll have more for you soon! - JS",
+      "date": "2026-10-21T18:03:45+0000",
+      "url": "https://www.facebook.com/122153866947125982/posts/122154449703125982",
+      "image": "https://scontent-iad3-1.xx.fbcdn.net/v/t39.30808-6/857518169_122154449613125982_6665694142878914290_n.jpg?stp=dst-jpg_s720x720_tt6&_nc_cat=110&ccb=1-7&_nc_sid=127cfc&_nc_ohc=8ZvGiDHvcdYQ7kNvwGgmCkt&_nc_oc=AdoeS6nz3oG87bOYWh58h0iBXiI_KGepfc929dHiyJuqS3nizAO6zD36sOS_E1B8Tsg&_nc_zt=23&_nc_ht=scontent-iad3-1.xx&edm=APyxFHYEAAAA&_nc_gid=eEzbtcFv6RzZggtgVUeQHA&_nc_tpa=Q5bMBQLCU7S91cATS-qab7jUL3PGAV6P0BgOeKJP3CG78zp2CRYpL-kGoHOiI-VJmfLr57gB4fuhxlyxwA&oh=00_AQN3_e08iIlhh0ddM4KmnvGNm5qVJaS4Jfjo6TToho4NFg&oe=6ADEE0BB"
+    },
+    {
+      "id": "844747345393745_2920394524979072",
+      "message": "",
+      "date": "2026-10-21T17:50:18+0000",
+      "url": "https://www.facebook.com/122153866947125982/posts/2920394524979072?substory_index=2920394524979072",
+      "image": "https://scontent-iad3-2.xx.fbcdn.net/v/t39.30808-6/858462295_122154448341125982_938541691477044662_n.png?stp=dst-png_s720x720&_nc_cat=103&ccb=1-7&_nc_sid=cc71e4&_nc_ohc=kVY_KBzhRLQQ7kNvwGmrJQu&_nc_oc=AdrZc9cYa59hKM52cjIZYGedHGq_sHGT38Md_xw_3C2asBo74ohwfPiqx5LtIomcvKs&_nc_zt=23&_nc_ht=scontent-iad3-2.xx&edm=APyxFHYEAAAA&_nc_gid=eEzbtcFv6RzZggtgVUeQHA&_nc_tpa=Q5bMBQJ69Qv1inzC0xgPnDHq9fXaJfgtE41QC90Dkm955ao8UQuL0S7CB5ivL4SL8wQaD7SUlDuRMvohzw&oh=00_AQOExqy067cLzSQwhhsYD_sYxMd61hKnr9KL0FhLYK3xgw&oe=6ADEDBB8"
+    }
+  ]
 }
