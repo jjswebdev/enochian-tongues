@@ -184,7 +184,11 @@ nav {
   text-align: center;
   background:
     linear-gradient(rgb(0 0 0 / 35%), rgb(0 0 0 / 85%)),
-    url("assets/paradise-lost.jpg") center 35% / cover no-repeat;
+    var(--hero-image, url("assets/paradise-lost.jpg")) center 35% / cover no-repeat;
+}
+
+.hero-home {
+  --hero-image: url("assets/album-cover.png");
 }
 
 .hero.hero-compact {
