@@ -25,6 +25,10 @@ The site uses static HTML, CSS and JavaScript, with GitHub Pages hosting and a G
 | `scripts/sync-facebook.mjs` | Fetches and filters Facebook Page posts |
 | `.github/workflows/facebook-news.yml` | News sync and GitHub Pages deployment |
 | `FACEBOOK-NEWS-SETUP.md` | Facebook integration setup reference |
+| `et-socials.txt` | Reference list of Enochian Tongues and 5th Dawn links |
+| `archive/5th-dawn/index.html` | Standalone 5th Dawn band archive |
+| `archive/5th-dawn/styles.css` | Archive layout and typography |
+| `archive/5th-dawn/assets/` | Transparent 5th Dawn logo and album artwork |
 
 ## Preview locally
 
@@ -46,19 +50,44 @@ Use the browser's responsive device tools to check phone layouts, and check the 
 4. Preview the affected page and check desktop and phone layouts.
 5. Commit and push changes to `main`.
 
-Navigation, social links and footers are repeated in each HTML file. Apply shared changes to all five pages. Musician profiles are on the **About** page.
+Navigation, social links and footers are repeated in each HTML file. Apply shared changes to all five main-site pages. Musician profiles are on the **About** page.
+
+The Music and Shows content and the home page Facebook feed are centered. On mobile, the social icons are centered below the navigation, and the footer copyright and Back to top link align horizontally. When changing CSS, update the affected pages’ stylesheet version query so browsers request the new styles.
+
+## 5th Dawn archive
+
+**Direct URL:** https://jjswebdev.github.io/enochian-tongues/archive/5th-dawn/
+
+The archive lives in its own folder and has no navigation links from the main website. It is publicly accessible by its direct URL. It has no Facebook news feed.
+
+The centered page uses a transparent 5th Dawn logo extracted from the Atrocity Domine cover. Its independent stylesheet matches the main site’s heading fonts, body typography and link styling.
+
+The Releases section contains:
+
+- **Evolving Toward Oblivion (2009):** album artwork, Bandcamp player, lineup and mixing/mastering credits.
+- **Atrocity Domine (2019):** album artwork, Bandcamp player, lineup, mixing/mastering, logo and artwork credits.
+
+The Links section has Bandcamp and Facebook buttons with small platform icons. A small Back to top link appears below it.
+
+| Archive asset | Purpose |
+| --- | --- |
+| `assets/5th-dawn-logo.png` | Transparent header logo |
+| `assets/evolving-toward-oblivion.jpg` | Evolving Toward Oblivion cover |
+| `assets/atrocity-domine.jpg` | Atrocity Domine cover |
+
+These asset paths are relative to `archive/5th-dawn/`. Edit the archive’s HTML and CSS there; place its images in its own `assets/` folder. Keep embedded player album IDs matched to their releases: `1904059963` for Evolving Toward Oblivion and `2900971773` for Atrocity Domine.
 
 ## Publishing
 
 GitHub Actions workflow **Sync Facebook news** publishes the site to GitHub Pages. It runs:
 
-- When HTML files, `styles.css`, assets, scripts or the workflow itself change on `main`.
+- When HTML files, `styles.css`, assets, `archive/`, scripts or the workflow itself change on `main`.
 - On the schedule `23 */6 * * *` (00:23, 06:23, 12:23 and 18:23 UTC; scheduled runs may be delayed).
 - Manually through **Actions → Sync Facebook news → Run workflow**.
 
-README-only and setup-document-only changes do not trigger this workflow. Changes only to `data/` also require a manual run to publish.
+README-only, setup-document-only and `et-socials.txt`-only changes do not trigger this workflow. Changes only to `data/` also require a manual run to publish.
 
-The workflow fetches Facebook posts, commits a changed news cache, packages the public HTML, CSS, assets and data, and deploys them. Documentation and sync scripts are excluded from the published site.
+The workflow fetches Facebook posts, commits a changed news cache, packages the public HTML, CSS, assets, data and archive folder, and deploys them. Documentation, `et-socials.txt` and sync scripts are excluded from the published site.
 
 Deployment artifacts use `github-pages-${{ github.run_id }}-${{ github.run_attempt }}` for both upload and deployment. Each run attempt gets a unique artifact name, preventing duplicate-artifact collisions when rerunning the workflow.
 
@@ -99,7 +128,7 @@ If fetching fails, check the job's error, token validity, Page authorization, pe
 ## Pending content
 
 - Replace the inactive Apple Music placeholders when the project has an artist URL.
-- Add the Bandcamp embedded player when music is available there.
+- Add the Enochian Tongues Bandcamp embedded player when music is available there (the 5th Dawn archive already has players).
 - Replace the vocalist portrait placeholder and `?? - Vocals` credit when ready.
 - Add show dates, venues and ticket links when announced.
 
