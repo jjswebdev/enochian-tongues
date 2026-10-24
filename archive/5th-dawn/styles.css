@@ -105,3 +105,36 @@ h2 {
   border: 0;
   margin: 24px auto;
 }
+
+.links {
+  margin-top: 64px;
+}
+
+.band-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+}
+
+.band-links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 10px 24px;
+  border: 1px solid #34322f;
+  color: #c4b875;
+  text-decoration: none;
+}
+
+.band-links a:hover,
+.band-links a:focus-visible {
+  border-color: #c4b875;
+  background: #171610;
+}
+
+.band-links a:focus-visible {
+  outline: 2px solid #c4b875;
+  outline-offset: 4px;
+}
