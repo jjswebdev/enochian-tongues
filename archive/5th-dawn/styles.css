@@ -153,3 +153,12 @@ h2 {
   outline: 2px solid #c4b875;
   outline-offset: 4px;
 }
+
+.band-links a {
+  gap: 10px;
+}
+
+.band-links svg {
+  display: block;
+  flex-shrink: 0;
+}
