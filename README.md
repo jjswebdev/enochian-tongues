@@ -2,9 +2,9 @@
 
 Official website for Enochian Tongues, a metal project created in 2026.
 
-**Live site:** https://jjswebdev.github.io/enochian-tongues/
+**Live site:** https://enochiantongues.com/
 
-The site uses static HTML, CSS and JavaScript, with GitHub Pages hosting and a GitHub Actions workflow that imports Facebook news. No build system or package installation is required to preview the site.
+The site uses static HTML, CSS and JavaScript, hosted on Namecheap shared hosting through cPanel, with a GitHub Actions workflow that imports Facebook news. No build system or package installation is required to preview the site.
 
 ## Pages and files
 
@@ -49,6 +49,7 @@ Use the browser's responsive device tools to check phone layouts, and check the 
 3. Edit `styles.css` for shared appearance changes.
 4. Preview the affected page and check desktop and phone layouts.
 5. Commit and push changes to `main`.
+6. Upload the changed public files to the domain’s `public_html/` folder through cPanel. A GitHub push does not update the Namecheap-hosted pages.
 
 Navigation, social links and footers are repeated in each HTML file. Apply shared changes to all five main-site pages. Musician profiles are on the **About** page.
 
@@ -56,7 +57,7 @@ The Music and Shows content and the home page Facebook feed are centered. On mob
 
 ## 5th Dawn archive
 
-**Direct URL:** https://jjswebdev.github.io/enochian-tongues/archive/5th-dawn/
+**Direct URL:** https://enochiantongues.com/archive/5th-dawn/
 
 The archive lives in its own folder and has no navigation links from the main website. It is publicly accessible by its direct URL. It has no Facebook news feed.
 
@@ -79,21 +80,19 @@ These asset paths are relative to `archive/5th-dawn/`. Edit the archive’s HTML
 
 ## Publishing
 
-GitHub Actions workflow **Sync Facebook news** publishes the site to GitHub Pages. It runs:
+The production site is https://enochiantongues.com/, served from `/home/enocywiw/public_html` on Namecheap shared hosting. Upload public HTML, CSS, `assets/`, `data/` and `archive/` with their relative folder structure intact. Keep documentation, source tooling, credentials and backup archives outside the document root.
 
-- When HTML files, `styles.css`, assets, `archive/`, scripts or the workflow itself change on `main`.
-- On the schedule `23 */6 * * *` (00:23, 06:23, 12:23 and 18:23 UTC; scheduled runs may be delayed).
-- Manually through **Actions → Sync Facebook news → Run workflow**.
+The 5th Dawn WAV ZIP files are hosted in `public_html/archive/5th-dawn/downloads/`. The production archive page uses relative download links to those files. Do not replace it with an older copy that links to GitHub Releases. The original GitHub Releases remain as backup copies.
 
-README-only, setup-document-only and `et-socials.txt`-only changes do not trigger this workflow. Changes only to `data/` also require a manual run to publish.
+GitHub Actions **Sync Facebook news** still runs on site-file pushes, manually, and on schedule `23 */6 * * *` (00:23, 06:23, 12:23 and 18:23 UTC; scheduled runs may be delayed). It refreshes `data/facebook-posts.json` in this repository. Its GitHub Pages deployment is a secondary copy, not the production hosting deployment.
 
-The workflow fetches Facebook posts, commits a changed news cache, packages the public HTML, CSS, assets, data and archive folder, and deploys them. Documentation, `et-socials.txt` and sync scripts are excluded from the published site.
+README-only, setup-document-only and `et-socials.txt`-only changes do not trigger the workflow. The production browser fetches the updated public news cache directly from GitHub, so routine Facebook news updates do not require a cPanel upload.
 
-Deployment artifacts use `github-pages-${{ github.run_id }}-${{ github.run_attempt }}` for both upload and deployment. Each run attempt gets a unique artifact name, preventing duplicate-artifact collisions when rerunning the workflow.
-
-To verify a change, open the workflow run and confirm the deployment succeeded, then refresh the live page. If needed, use a hard refresh to bypass an older browser cache.
+After uploading page changes, check the production URL and affected links, including archive downloads. Use a hard refresh if the browser shows an older version.
 
 ## Facebook news feed
+
+The home page first loads the public JSON cache from `https://raw.githubusercontent.com/jjswebdev/enochian-tongues/main/data/facebook-posts.json`, with the bundled `data/facebook-posts.json` as a fallback if the remote request fails or returns invalid data. Requests time out after eight seconds per source. A valid empty remote feed keeps the Facebook fallback link instead of restoring older cached posts.
 
 The home page displays up to six eligible posts as custom news cards linked to Facebook. The sync script requests up to 12 recent published Page posts, excludes hidden and unwanted entries, and saves selected display fields to the public cache.
 

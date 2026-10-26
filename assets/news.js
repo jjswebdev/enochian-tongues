@@ -9,10 +9,26 @@
     } catch { return null; }
   };
   try {
-    const response = await fetch('data/facebook-posts.json', { cache: 'no-cache' });
-    if (!response.ok) return;
-    const data = await response.json();
-    const posts = data?.posts;
+    // GitHub Actions refreshes this public feed; no Facebook token is sent to visitors.
+    // Fall back to the included snapshot when the current feed is unavailable.
+    const sources = [
+      'https://raw.githubusercontent.com/jjswebdev/enochian-tongues/main/data/facebook-posts.json',
+      'data/facebook-posts.json'
+    ];
+    let posts;
+    for (const source of sources) {
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), 8000);
+      try {
+        const response = await fetch(source, { cache: 'no-cache', signal: controller.signal });
+        if (!response.ok) continue;
+        const data = await response.json();
+        if (!Array.isArray(data?.posts)) continue;
+        posts = data.posts;
+        break;
+      } catch { /* Try the next feed source. */ }
+      finally { clearTimeout(timeout); }
+    }
     if (!Array.isArray(posts) || !posts.length) return;
     const fragment = document.createDocumentFragment();
     for (const post of posts.slice(0, 6)) {
