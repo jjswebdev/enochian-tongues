@@ -185,3 +185,28 @@ h2 {
   outline: 2px solid #c4b875;
   outline-offset: 4px;
 }
+
+.release-download a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 12px 20px;
+  border: 1px solid #34322f;
+  color: #c4b875;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.release-download a:hover,
+.release-download a:focus-visible {
+  border-color: #c4b875;
+  background: #171610;
+}
+
+.release-download a:focus-visible {
+  outline: 2px solid #c4b875;
+  outline-offset: 4px;
+}
